@@ -12,6 +12,10 @@
 </head>
 <body>
 
+<div class="scroll-progress-container" aria-hidden="true">
+  <div class="scroll-progress-bar" id="scrollProgressBar"></div>
+</div>
+
 <a class="skip-link" href="#main">Skip to content</a>
 
 <header class="site-header" id="siteHeader">
@@ -42,19 +46,24 @@
 
   <!-- HERO -->
   <section class="hero" id="top">
+    <div class="hero-ambient-glow" aria-hidden="true"></div>
     <div class="hero-copy">
-      <p class="hero-kicker">Clinical Nutrition &middot; Movement &middot; Mind</p>
-      <h1>Nourish the body.<br>Heal the mind.<br>Thrive for life.</h1>
-      <p class="hero-lede">You cannot heal the body without healing the mind — and you cannot heal the mind without nourishing the body. NutriMind brings both together in one personal, clinically structured plan.</p>
-      <div class="hero-actions">
-        <a href="tel:+919390598341" class="btn btn-primary">Book a Consultation</a>
+      <p class="hero-kicker anim-hero-1">Clinical Nutrition &middot; Movement &middot; Mind</p>
+      <h1 class="anim-hero-2">Nourish the body.<br>Heal the mind.<br>Thrive for life.</h1>
+      <p class="hero-lede anim-hero-3">You cannot heal the body without healing the mind — and you cannot heal the mind without nourishing the body. NutriMind brings both together in one personal, clinically structured plan.</p>
+      <div class="hero-actions anim-hero-4">
+        <a href="tel:+919390598341" class="btn btn-primary btn-pulse">Book a Consultation</a>
         <a href="#pillars" class="btn btn-ghost">Explore our approach</a>
       </div>
-      <p class="hero-trust">Trusted by 100+ clients &nbsp;&middot;&nbsp; A decade of clinical experience</p>
+      <p class="hero-trust anim-hero-5">
+        Trusted by <strong class="counter" data-target="100">0</strong>+ clients &nbsp;&middot;&nbsp; <strong class="counter" data-target="10">0</strong>+ years of clinical experience
+      </p>
     </div>
-    <div class="hero-media">
-      <img src="assets/dr-shalini-portrait.jpg" alt="Dr. Shalini Rana, founder of NutriMind" width="1024" height="1436">
-      <div class="hero-media-caption">
+    <div class="hero-media anim-hero-media">
+      <div class="hero-image-wrap">
+        <img src="assets/dr-shalini-portrait.jpg" alt="Dr. Shalini Rana, founder of NutriMind" width="1024" height="1436">
+      </div>
+      <div class="hero-media-caption float-badge">
         <span class="stars" aria-hidden="true">★★★★★</span>
         <span>Dr. Shalini Rana<br><small>Clinical Nutritionist &middot; Exercise Specialist &middot; Counseling Psychologist</small></span>
       </div>
@@ -64,13 +73,13 @@
   <!-- ABOUT -->
   <section class="about" id="about">
     <div class="about-grid">
-      <div class="about-eyebrow-col">
+      <div class="about-eyebrow-col reveal reveal-left">
         <h2>The mind behind<br>NutriMind</h2>
         <div class="leaf-rule" aria-hidden="true">
-          <svg viewBox="0 0 120 24" width="100" height="20"><path d="M2 12c20-14 40-14 58 0s38 14 58 0" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>
+          <svg class="animated-leaf-svg" viewBox="0 0 120 24" width="100" height="20"><path d="M2 12c20-14 40-14 58 0s38 14 58 0" fill="none" stroke="currentColor" stroke-width="1.4"/></svg>
         </div>
       </div>
-      <div class="about-body">
+      <div class="about-body reveal reveal-right">
         <p class="pull-quote">"Balanced nutrition + emotional stability = lifelong wellbeing."</p>
         <p>At the heart of NutriMind by Dr. Shalini Rana lies a simple belief: healing the body without healing the mind is incomplete, and healing the mind without nourishing the body doesn't last.</p>
         <p>Dr. Shalini Rana, the founder of NutriMind, brings together a decade of experience as a Clinical Nutritionist, Exercise Specialist and Counseling Psychologist — a rare combination that lets her treat the whole person, not just a symptom.</p>
@@ -81,16 +90,16 @@
 
   <!-- PILLARS -->
   <section class="pillars" id="pillars">
-    <div class="section-intro">
+    <div class="section-intro reveal reveal-up">
       <h2>Nourish. Heal. Thrive.</h2>
       <p>Every service at NutriMind is built to work from the inside out — combining nutrition, exercise science and mind therapy for change that actually holds.</p>
     </div>
 
     <article class="pillar">
-      <div class="pillar-media">
+      <div class="pillar-media reveal reveal-left">
         <img src="assets/nutrient-deficiencies.jpg" alt="Fresh, nutrient-dense ingredients" loading="lazy" width="736" height="490">
       </div>
-      <div class="pillar-copy">
+      <div class="pillar-copy reveal reveal-right">
         <h3>Clinical Nutrition &amp; Therapeutic Diets</h3>
         <p>Food is your first medicine. Every diet is tailored to your body's biochemistry, lifestyle and emotional needs — helping you heal naturally and sustainably, never through a crash diet.</p>
         <ul class="leaf-list">
@@ -105,10 +114,10 @@
     </article>
 
     <article class="pillar reverse">
-      <div class="pillar-media">
+      <div class="pillar-media reveal reveal-right">
         <img src="assets/movement-therapy.jpg" alt="Guided strength and movement training" loading="lazy" width="736" height="1037">
       </div>
-      <div class="pillar-copy">
+      <div class="pillar-copy reveal reveal-left">
         <h3>Exercise &amp; Movement Therapy</h3>
         <p>Movement is medicine — prescribed precisely for your health status and body type, not a one-size-fits-all workout sheet.</p>
         <ul class="leaf-list">
@@ -125,10 +134,10 @@
     </article>
 
     <article class="pillar">
-      <div class="pillar-media">
+      <div class="pillar-media reveal reveal-left">
         <img src="assets/mental-health.jpg" alt="A calm therapy and counseling setting" loading="lazy" width="417" height="626">
       </div>
-      <div class="pillar-copy">
+      <div class="pillar-copy reveal reveal-right">
         <h3>Mental Health &amp; Counseling</h3>
         <p>Healing the body without healing the mind is incomplete. Emotional wellbeing sits at the heart of every transformation at NutriMind.</p>
         <ul class="leaf-list">
@@ -145,39 +154,39 @@
   </section>
 
   <!-- CORPORATE STRIP -->
-  <section class="corporate-strip">
+  <section class="corporate-strip reveal reveal-fade">
     <p>Also offering <strong>Corporate Mental Health &amp; Workplace Stress Counseling</strong> — bringing the same mind–body approach to teams and organizations.</p>
     <a href="tel:+919390598341" class="text-link">Enquire for your workplace &rarr;</a>
   </section>
 
   <!-- SPECIALIZED PROGRAMS -->
   <section class="programs" id="programs">
-    <div class="section-intro">
+    <div class="section-intro reveal reveal-up">
       <h2>Specialized nutrition programs</h2>
       <p>Every plan is culturally adaptable, clinically structured and emotionally supportive — designed by Dr. Shalini Rana herself.</p>
     </div>
-    <div class="program-grid">
-      <div class="program">
+    <div class="program-grid reveal-stagger">
+      <div class="program reveal-card">
         <h4>Pregnancy diets</h4>
         <p>Trimester-wise nutrition focused on baby growth, maternal energy and safe weight gain.</p>
       </div>
-      <div class="program">
+      <div class="program reveal-card">
         <h4>Postpartum &amp; lactation diets</h4>
         <p>Healing and recovery-focused diets that support breastfeeding, hormone balance and emotional wellbeing.</p>
       </div>
-      <div class="program">
+      <div class="program reveal-card">
         <h4>Skin &amp; hair nutrition</h4>
         <p>Inside-out glow plans for acne, pigmentation and hair fall.</p>
       </div>
-      <div class="program">
+      <div class="program reveal-card">
         <h4>Menopause &amp; women's health</h4>
         <p>Hormone-stabilizing diets to reduce fatigue, mood swings and inflammation.</p>
       </div>
-      <div class="program">
+      <div class="program reveal-card">
         <h4>Fertility &amp; IVF support</h4>
         <p>Nutrient-rich, fertility-enhancing meal plans to support conception and implantation.</p>
       </div>
-      <div class="program">
+      <div class="program reveal-card">
         <h4>Fatty liver &amp; gut health</h4>
         <p>Liver-detox and microbiome-focused nutrition for lasting digestive health.</p>
       </div>
@@ -186,20 +195,24 @@
 
   <!-- LEARN / EDUCATION -->
   <section class="learn" id="learn">
-    <div class="section-intro light">
+    <div class="section-intro light reveal reveal-up">
       <h2>Evidence-based health education</h2>
       <p>Straightforward, science-backed reading on the topics clients ask about most.</p>
     </div>
-    <div class="article-grid">
-      <figure class="article-card">
-        <img src="assets/nutrient-deficiencies.jpg" alt="Assorted whole foods" loading="lazy" width="736" height="490">
+    <div class="article-grid reveal-stagger">
+      <figure class="article-card reveal-card">
+        <div class="article-media">
+          <img src="assets/nutrient-deficiencies.jpg" alt="Assorted whole foods" loading="lazy" width="736" height="490">
+        </div>
         <figcaption>
           <h4>5 common nutrient deficiencies in modern individuals</h4>
           <p>How everyday diets fall short — and the simple shifts that close the gap.</p>
         </figcaption>
       </figure>
-      <figure class="article-card">
-        <img src="assets/gut-health.jpg" alt="Gut and immune health illustration" loading="lazy" width="736" height="443">
+      <figure class="article-card reveal-card">
+        <div class="article-media">
+          <img src="assets/gut-health.jpg" alt="Gut and immune health illustration" loading="lazy" width="736" height="443">
+        </div>
         <figcaption>
           <h4>The gut–immune connection</h4>
           <p>Why your gut microbiome is quietly running your energy, mood and immunity.</p>
@@ -210,32 +223,32 @@
 
   <!-- CLIENT STORIES (real videos) -->
   <section class="stories" id="stories">
-    <div class="section-intro">
+    <div class="section-intro reveal reveal-up">
       <h2>Client stories, in their own words</h2>
       <p>Short, real conversations with people NutriMind has worked with — no scripts.</p>
     </div>
-    <div class="video-grid">
-      <a class="video-card" href="https://youtube.com/shorts/2m4g7V_XTgQ" target="_blank" rel="noopener">
+    <div class="video-grid reveal-stagger">
+      <a class="video-card reveal-card" href="https://youtube.com/shorts/2m4g7V_XTgQ" target="_blank" rel="noopener">
         <img src="https://i.ytimg.com/vi/2m4g7V_XTgQ/hqdefault.jpg" alt="Client story on YouTube" loading="lazy">
         <span class="play" aria-hidden="true">&#9658;</span>
       </a>
-      <a class="video-card" href="https://youtube.com/shorts/TzF8paugVaQ" target="_blank" rel="noopener">
+      <a class="video-card reveal-card" href="https://youtube.com/shorts/TzF8paugVaQ" target="_blank" rel="noopener">
         <img src="https://i.ytimg.com/vi/TzF8paugVaQ/hqdefault.jpg" alt="Client story on YouTube" loading="lazy">
         <span class="play" aria-hidden="true">&#9658;</span>
       </a>
-      <a class="video-card" href="https://youtube.com/shorts/z2cLe7TssuM" target="_blank" rel="noopener">
+      <a class="video-card reveal-card" href="https://youtube.com/shorts/z2cLe7TssuM" target="_blank" rel="noopener">
         <img src="https://i.ytimg.com/vi/z2cLe7TssuM/hqdefault.jpg" alt="Client story on YouTube" loading="lazy">
         <span class="play" aria-hidden="true">&#9658;</span>
       </a>
-      <a class="video-card" href="https://youtube.com/shorts/qV9UBLf1wA4" target="_blank" rel="noopener">
+      <a class="video-card reveal-card" href="https://youtube.com/shorts/qV9UBLf1wA4" target="_blank" rel="noopener">
         <img src="https://i.ytimg.com/vi/qV9UBLf1wA4/hqdefault.jpg" alt="Client story on YouTube" loading="lazy">
         <span class="play" aria-hidden="true">&#9658;</span>
       </a>
-      <a class="video-card" href="https://youtube.com/shorts/ALAv0Ugq1XE" target="_blank" rel="noopener">
+      <a class="video-card reveal-card" href="https://youtube.com/shorts/ALAv0Ugq1XE" target="_blank" rel="noopener">
         <img src="https://i.ytimg.com/vi/ALAv0Ugq1XE/hqdefault.jpg" alt="Client story on YouTube" loading="lazy">
         <span class="play" aria-hidden="true">&#9658;</span>
       </a>
-      <a class="video-card" href="https://youtube.com/shorts/Fql7b1JJDpE" target="_blank" rel="noopener">
+      <a class="video-card reveal-card" href="https://youtube.com/shorts/Fql7b1JJDpE" target="_blank" rel="noopener">
         <img src="https://i.ytimg.com/vi/Fql7b1JJDpE/hqdefault.jpg" alt="Client story on YouTube" loading="lazy">
         <span class="play" aria-hidden="true">&#9658;</span>
       </a>
@@ -243,15 +256,15 @@
   </section>
 
   <!-- CTA BAND -->
-  <section class="cta-band">
-    <h2>You didn't come this far to stop.</h2>
-    <a href="tel:+919390598341" class="btn btn-primary">Book a Consultation</a>
+  <section class="cta-band reveal reveal-fade">
+    <h2 class="reveal reveal-up">You didn't come this far to stop.</h2>
+    <a href="tel:+919390598341" class="btn btn-primary btn-pulse">Book a Consultation</a>
   </section>
 
   <!-- CONTACT -->
   <section class="contact" id="contact">
     <div class="contact-grid">
-      <div class="contact-info">
+      <div class="contact-info reveal reveal-left">
         <h2>Get in touch</h2>
         <p>Have a question before you book? Reach out directly — Dr. Shalini and her team typically respond within a day.</p>
         <ul class="contact-list">
@@ -278,7 +291,7 @@
         </div>
       </div>
 
-      <form class="contact-form" id="contactForm" action="mailto:info@nutrimind.com" method="post" enctype="text/plain">
+      <form class="contact-form reveal reveal-right" id="contactForm" action="mailto:info@nutrimind.com" method="post" enctype="text/plain">
         <label for="name">Your name</label>
         <input type="text" id="name" name="name" placeholder="Enter your name" required>
 
@@ -288,11 +301,16 @@
         <label for="message">What would you like help with?</label>
         <textarea id="message" name="message" rows="4" placeholder="Tell us a little about your goals"></textarea>
 
-        <button type="submit" class="btn btn-primary full">Send message</button>
+        <button type="submit" class="btn btn-primary full btn-pulse">Send message</button>
         <p class="form-note">This opens your email app addressed to info@nutrimind.com. Prefer to talk? <a href="tel:+919390598341">Call +91 93905 98341</a>.</p>
       </form>
     </div>
   </section>
+
+  <!-- BACK TO TOP BUTTON -->
+  <button class="back-to-top" id="backToTop" aria-label="Scroll back to top" title="Back to top">
+    <svg viewBox="0 0 24 24" width="20" height="20"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="M18 15l-6-6-6 6"/></svg>
+  </button>
 
 </main>
 
