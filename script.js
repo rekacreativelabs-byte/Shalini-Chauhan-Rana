@@ -135,5 +135,47 @@
     });
   }
 
+  // ---------- FAQ Accordion ----------
+  var faqTriggers = document.querySelectorAll('.faq-trigger');
+  faqTriggers.forEach(function (trigger) {
+    trigger.addEventListener('click', function () {
+      var item = trigger.closest('.faq-item');
+      var isOpen = item.classList.contains('open');
+
+      // Close all other items
+      document.querySelectorAll('.faq-item.open').forEach(function (openItem) {
+        if (openItem !== item) {
+          openItem.classList.remove('open');
+          var otherTrigger = openItem.querySelector('.faq-trigger');
+          if (otherTrigger) otherTrigger.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      // Toggle current item
+      if (isOpen) {
+        item.classList.remove('open');
+        trigger.setAttribute('aria-expanded', 'false');
+      } else {
+        item.classList.add('open');
+        trigger.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+
+  // ---------- Consultation Service Chips ----------
+  var serviceChips = document.querySelectorAll('.service-chip');
+  var serviceInput = document.getElementById('serviceInterest');
+
+  serviceChips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      serviceChips.forEach(function (c) { c.classList.remove('active'); });
+      chip.classList.add('active');
+      if (serviceInput) {
+        serviceInput.value = chip.getAttribute('data-value');
+      }
+    });
+  });
+
 })();
+
 
