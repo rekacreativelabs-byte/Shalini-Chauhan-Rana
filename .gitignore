@@ -1,0 +1,8 @@
+﻿# Raw uncompressed video sources (web-optimized copies are in assets/reels/)
+edu video/
+dr shalini photos with thubnails of edu/
+
+# OS and Editor files
+.DS_Store
+Thumbs.db
+*.tmp

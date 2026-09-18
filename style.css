@@ -32,8 +32,15 @@
   --max: 1200px;
 }
 
-*, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
 
 body {
   margin: 0;
@@ -44,9 +51,31 @@ body {
   line-height: 1.68;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
-img { max-width: 100%; display: block; }
+img, video {
+  max-width: 100%;
+  display: block;
+  -webkit-user-drag: none;
+}
+
+button, a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* GPU Hardware Acceleration for Smooth Rendering on PC & Mobile */
+.clinic-photo-card,
+.spotlight-card,
+.reel-card,
+.infographic-card,
+.journey-card,
+.app-feature-card,
+.faq-item {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
 
 h1, h2, h3, h4 {
   font-family: var(--font-display);
@@ -1472,6 +1501,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 .reveal-fade { transform: none; }
 .reveal.is-revealed {
   opacity: 1; transform: translate(0, 0);
+  will-change: auto;
 }
 
 /* Staggered items */
@@ -1482,6 +1512,7 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
 }
 .reveal-stagger.is-revealed > * {
   opacity: 1; transform: translateY(0);
+  will-change: auto;
 }
 .reveal-stagger.is-revealed > *:nth-child(1) { transition-delay: 0.05s; }
 .reveal-stagger.is-revealed > *:nth-child(2) { transition-delay: 0.12s; }
@@ -1522,7 +1553,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   .app-showcase-grid { grid-template-columns: 1fr; gap: 48px; }
   .app-preview-col { order: -1; }
   .article-grid { grid-template-columns: 1fr; }
-  .video-grid { grid-template-columns: repeat(3, 1fr); }
   .corporate-strip { flex-direction: column; text-align: center; }
   .contact-grid { grid-template-columns: 1fr; }
 }
@@ -1549,7 +1579,6 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   .device-screen { border-radius: 28px; min-height: 480px; }
   .journey-grid { grid-template-columns: 1fr; }
   .program-grid { grid-template-columns: 1fr; }
-  .video-grid { grid-template-columns: repeat(2, 1fr); }
   .hero-actions { flex-direction: column; }
   .hero-actions .btn { width: 100%; }
   .hero-trust-bar { flex-direction: column; align-items: flex-start; width: 100%; }
@@ -1578,3 +1607,1418 @@ a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visib
   }
 }
 
+
+/* ==========================================================================
+   NEW ENHANCEMENTS: CLINICAL GALLERY, PROGRAM FLYERS, REELS HUB & MODALS
+   ========================================================================== */
+
+/* ---------- 1. ABOUT CLINICAL PRACTICE GALLERY ---------- */
+.clinic-gallery-wrap {
+  margin-top: 56px;
+  padding-top: 48px;
+  border-top: 1px solid var(--border);
+}
+
+.clinic-gallery-intro {
+  margin-bottom: 24px;
+}
+
+.clinic-gallery-intro h3 {
+  font-family: var(--font-display);
+  font-size: 1.85rem;
+  color: var(--ink);
+  font-weight: 500;
+  margin-top: 6px;
+}
+
+.clinic-photo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-bottom: 36px;
+}
+
+.clinic-photo-card {
+  position: relative;
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--white);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+}
+
+.clinic-photo-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--border-gold);
+}
+
+.clinic-photo-card img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.clinic-photo-card:hover img {
+  transform: scale(1.05);
+}
+
+.clinic-photo-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 32px 18px 14px;
+  background: linear-gradient(to top, rgba(13, 28, 18, 0.88) 0%, rgba(13, 28, 18, 0.4) 60%, transparent 100%);
+  color: var(--ivory);
+}
+
+.clinic-photo-caption strong {
+  display: block;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--white);
+}
+
+.clinic-photo-caption span {
+  font-size: 0.78rem;
+  color: rgba(251, 248, 242, 0.82);
+  font-family: var(--font-body);
+}
+
+.clinic-trust-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  background: linear-gradient(135deg, var(--sage-pale) 0%, var(--ivory) 100%);
+  border: 1px solid var(--border-gold);
+  border-radius: 16px;
+  padding: 24px 28px;
+}
+
+.trust-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.trust-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.trust-item strong {
+  display: block;
+  font-size: 0.92rem;
+  color: var(--ink);
+  margin-bottom: 3px;
+}
+
+.trust-item p {
+  font-size: 0.8rem;
+  color: var(--ink-light);
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* ---------- 2. FEATURED CLINICAL PROGRAM SPOTLIGHTS ---------- */
+.program-spotlight-wrap {
+  margin-top: 60px;
+  padding-top: 48px;
+  border-top: 1px solid var(--border);
+}
+
+.spotlight-badge-bar {
+  text-align: center;
+  max-width: 680px;
+  margin: 0 auto 36px;
+}
+
+.spotlight-kicker {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: var(--gold-light);
+  padding: 4px 12px;
+  border-radius: 100px;
+  margin-bottom: 10px;
+}
+
+.spotlight-badge-bar h3 {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: var(--ink);
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.spotlight-badge-bar p {
+  font-size: 0.92rem;
+  color: var(--ink-light);
+}
+
+.program-spotlight-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  max-width: 1140px;
+  margin: 0 auto;
+}
+
+.spotlight-card {
+  display: grid;
+  grid-template-columns: 460px 1fr;
+  background: var(--white);
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid var(--border-gold);
+  box-shadow: 0 10px 30px rgba(13, 28, 18, 0.06);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+}
+
+.spotlight-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 50px rgba(13, 28, 18, 0.12);
+}
+
+.spotlight-media {
+  position: relative;
+  background: linear-gradient(145deg, #F9F6F0 0%, #EFE8DA 100%);
+  padding: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  overflow: hidden;
+  border-right: 1px solid var(--border);
+  outline: none;
+}
+
+.spotlight-media:focus-visible {
+  box-shadow: inset 0 0 0 3px var(--gold);
+}
+
+.spotlight-media img {
+  width: 100%;
+  height: auto;
+  max-height: 560px;
+  object-fit: contain;
+  display: block;
+  border-radius: 14px;
+  box-shadow: 0 12px 30px rgba(13, 28, 18, 0.14);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.spotlight-card:hover .spotlight-media img {
+  transform: scale(1.02);
+}
+
+.spotlight-zoom-indicator {
+  position: absolute;
+  bottom: 36px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(13, 28, 18, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--ivory);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 7px 18px;
+  border-radius: 100px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.spotlight-media:hover .spotlight-zoom-indicator {
+  background: var(--gold);
+  color: var(--ink);
+  transform: translateX(-50%) translateY(-2px);
+}
+
+.spotlight-content {
+  padding: 40px 38px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.spotlight-header-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  gap: 12px;
+}
+
+.spotlight-tag {
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--sage);
+}
+
+.spotlight-doc-label {
+  font-size: 0.76rem;
+  color: var(--ink-light);
+  font-weight: 500;
+}
+
+.spotlight-content h4 {
+  font-family: var(--font-display);
+  font-size: 1.95rem;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.22;
+  margin-bottom: 12px;
+}
+
+.spotlight-lead {
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  line-height: 1.55;
+  margin-bottom: 18px;
+}
+
+.spotlight-highlights-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.highlight-chip {
+  background: var(--sage-pale);
+  color: var(--sage);
+  border: 1px solid rgba(75, 115, 85, 0.2);
+  font-size: 0.76rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 8px;
+}
+
+.spotlight-content .leaf-list {
+  margin-bottom: 24px;
+}
+
+.spotlight-content .leaf-list li {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  margin-bottom: 8px;
+}
+
+.spotlight-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin-top: auto;
+  padding-top: 18px;
+  border-top: 1px solid var(--border);
+}
+
+.spotlight-actions .btn {
+  padding: 12px 24px;
+}
+
+/* ---------- 3. MASTERCLASS REELS HUB ---------- */
+.reels-hub {
+  padding: 100px 32px;
+  background: radial-gradient(circle at top right, rgba(198, 146, 72, 0.06), transparent 50%),
+              radial-gradient(circle at bottom left, rgba(75, 115, 85, 0.05), transparent 50%),
+              var(--ivory);
+  position: relative;
+}
+
+.reels-filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 40px;
+}
+
+.reel-filter-btn {
+  background: var(--white);
+  border: 1px solid var(--border);
+  color: var(--ink-soft);
+  font-family: var(--font-body);
+  font-size: 0.84rem;
+  font-weight: 600;
+  padding: 9px 20px;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.reel-filter-btn:hover {
+  border-color: var(--sage);
+  color: var(--sage);
+  transform: translateY(-1px);
+}
+
+.reel-filter-btn.active {
+  background: var(--ink);
+  color: var(--ivory);
+  border-color: var(--ink);
+  box-shadow: 0 4px 14px rgba(13, 28, 18, 0.2);
+}
+
+.reels-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 26px;
+}
+
+.reel-card {
+  background: var(--white);
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease, border-color 0.4s ease;
+  outline: none;
+}
+
+.reel-card:focus-visible {
+  box-shadow: 0 0 0 3px var(--gold);
+}
+
+.reel-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 36px rgba(13, 28, 18, 0.12);
+  border-color: var(--border-gold);
+}
+
+.reel-media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 9 / 14;
+  overflow: hidden;
+  background: #000;
+}
+
+.reel-poster {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.reel-preview-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.reel-card.is-hovering .reel-preview-video {
+  opacity: 1;
+}
+
+.reel-top-badges {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  right: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.reel-badge-pill {
+  background: rgba(13, 28, 18, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--ivory);
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 100px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.reel-duration-badge {
+  background: rgba(198, 146, 72, 0.9);
+  color: var(--white);
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+.reel-play-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(to top, rgba(13, 28, 18, 0.65) 0%, transparent 60%);
+  opacity: 0.85;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+}
+
+.reel-card:hover .reel-play-overlay {
+  opacity: 1;
+}
+
+.reel-play-btn-circle {
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  transform: scale(0.92);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.2s ease, color 0.2s ease;
+}
+
+.reel-card:hover .reel-play-btn-circle {
+  transform: scale(1.08);
+  background: var(--gold);
+  color: var(--white);
+}
+
+.reel-hover-hint {
+  margin-top: 10px;
+  font-size: 0.68rem;
+  color: rgba(255, 255, 255, 0.85);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 600;
+  transform: translateY(4px);
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.reel-card:hover .reel-hover-hint {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.reel-info {
+  padding: 18px 16px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.reel-info h4 {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.3;
+  margin-bottom: 12px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  flex-grow: 1;
+}
+
+.reel-footer-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+  border-top: 1px solid var(--border);
+  font-size: 0.75rem;
+}
+
+.reel-author {
+  color: var(--ink-light);
+  font-weight: 500;
+}
+
+.reel-watch-link {
+  color: var(--sage);
+  font-weight: 700;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.reel-card:hover .reel-watch-link {
+  color: var(--gold);
+  transform: translateX(2px);
+}
+
+/* Category filter hidden cards */
+.reel-card.is-filtered-out {
+  display: none !important;
+}
+
+/* ---------- 4. CLINICAL KNOWLEDGE DECK & INFOGRAPHICS ---------- */
+.infographics-section {
+  padding: 90px 32px;
+  background: var(--ink);
+  color: var(--ivory);
+  position: relative;
+  overflow: hidden;
+}
+
+.infographics-section::before {
+  content: "";
+  position: absolute;
+  top: -150px;
+  right: -150px;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(198, 146, 72, 0.12), transparent 70%);
+  pointer-events: none;
+}
+
+.infographics-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.infographic-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 18px;
+  overflow: hidden;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.4s ease;
+}
+
+.infographic-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--gold);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.4);
+}
+
+.infographic-media {
+  position: relative;
+  aspect-ratio: 4 / 4.5;
+  overflow: hidden;
+  background: #000;
+}
+
+.infographic-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.infographic-card:hover .infographic-media img {
+  transform: scale(1.06);
+}
+
+.infographic-zoom-pill {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background: rgba(13, 28, 18, 0.85);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  color: var(--ivory);
+  font-size: 0.72rem;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: 100px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  transform: translateY(6px);
+  opacity: 0.8;
+  transition: all 0.3s ease;
+}
+
+.infographic-card:hover .infographic-zoom-pill {
+  transform: translateY(0);
+  opacity: 1;
+  background: var(--gold);
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.infographic-info {
+  padding: 20px 18px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.infographic-category {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 6px;
+}
+
+.infographic-info h4 {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 500;
+  color: var(--white);
+  line-height: 1.25;
+  margin-bottom: 8px;
+}
+
+.infographic-info p {
+  font-size: 0.82rem;
+  color: rgba(251, 248, 242, 0.75);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* ---------- 5. CINEMA REEL MODAL PLAYER ---------- */
+.reel-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.reel-modal-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(8, 16, 11, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  animation: modalFadeIn 0.3s ease;
+}
+
+.reel-modal-container {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+  max-height: 90vh;
+  background: var(--ink);
+  border: 1px solid rgba(198, 146, 72, 0.35);
+  border-radius: 24px;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+  z-index: 2;
+  animation: modalPopIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+.reel-modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--ivory);
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.25s ease;
+}
+
+.reel-modal-close:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: rotate(90deg) scale(1.05);
+}
+
+.reel-modal-layout {
+  display: grid;
+  grid-template-columns: 380px 1fr;
+  max-height: 88vh;
+  overflow: hidden;
+}
+
+/* Video Column */
+.reel-modal-video-col {
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.reel-player-box {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 520px;
+  max-height: 75vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+}
+
+.reel-main-video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+/* Big center play button */
+.reel-center-play-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: rgba(198, 146, 72, 0.95);
+  color: var(--ink);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  transition: transform 0.25s ease, opacity 0.25s ease;
+  z-index: 4;
+}
+
+.reel-center-play-btn:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+}
+
+.reel-center-play-btn.is-playing {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Quick Nav Floating Buttons on Video */
+.reel-quick-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(13, 28, 18, 0.65);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--white);
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 4;
+  opacity: 0.7;
+  transition: all 0.2s ease;
+}
+
+.reel-quick-nav:hover {
+  opacity: 1;
+  background: rgba(198, 146, 72, 0.9);
+  color: var(--ink);
+}
+
+.reel-quick-nav.prev { left: 10px; }
+.reel-quick-nav.next { right: 10px; }
+
+/* Video Player Controls Bar */
+.reel-player-controls {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 14px 14px 10px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.4) 70%, transparent 100%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  z-index: 5;
+}
+
+.reel-ctrl-btn {
+  background: none;
+  border: none;
+  color: var(--ivory);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.reel-ctrl-btn:hover {
+  color: var(--gold);
+  transform: scale(1.1);
+}
+
+.reel-progress-wrap {
+  flex-grow: 1;
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 16px;
+}
+
+.reel-progress-slider {
+  width: 100%;
+  height: 4px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: rgba(255, 255, 255, 0.25);
+  border-radius: 10px;
+  outline: none;
+  cursor: pointer;
+}
+
+.reel-progress-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--gold);
+  cursor: pointer;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+  transition: transform 0.15s ease;
+}
+
+.reel-progress-slider::-webkit-slider-thumb:hover {
+  transform: scale(1.3);
+}
+
+.reel-time-badge {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.85);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+/* Sidebar Column */
+.reel-modal-sidebar {
+  background: var(--ink);
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.reel-doctor-chip {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 18px;
+}
+
+.reel-doc-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--gold);
+}
+
+.reel-doc-meta strong {
+  display: block;
+  font-size: 0.92rem;
+  color: var(--white);
+}
+
+.reel-doc-meta span {
+  font-size: 0.75rem;
+  color: rgba(251, 248, 242, 0.7);
+}
+
+.reel-sidebar-tags {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.reel-cat-pill {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: rgba(198, 146, 72, 0.15);
+  padding: 3px 10px;
+  border-radius: 100px;
+  border: 1px solid rgba(198, 146, 72, 0.3);
+}
+
+.reel-dur-pill {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.reel-modal-title {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 500;
+  color: var(--white);
+  line-height: 1.25;
+  margin-bottom: 20px;
+}
+
+.reel-takeaways-wrap {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 16px 18px;
+  margin-bottom: 22px;
+}
+
+.reel-takeaways-kicker {
+  display: block;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+
+.reel-takeaways-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.reel-takeaways-list li {
+  font-size: 0.84rem;
+  line-height: 1.45;
+  color: rgba(251, 248, 242, 0.9);
+  position: relative;
+  padding-left: 18px;
+}
+
+.reel-takeaways-list li::before {
+  content: "•";
+  position: absolute;
+  left: 4px;
+  color: var(--gold);
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.reel-sidebar-cta {
+  margin-top: auto;
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.reel-sidebar-cta .cta-note {
+  font-size: 0.78rem;
+  color: rgba(251, 248, 242, 0.72);
+  margin-bottom: 4px;
+  text-align: center;
+}
+
+.btn-whatsapp {
+  background: #25D366;
+  color: #FFFFFF;
+  border: none;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 20px;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  font-size: 0.85rem;
+}
+
+.btn-whatsapp:hover {
+  background: #20BA5A;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35);
+}
+
+.reel-nav-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+.reel-step-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: var(--ivory);
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 6px 14px;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.reel-step-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.reel-counter-index {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* ---------- 6. CLINICAL INFOGRAPHIC LIGHTBOX ---------- */
+.infographic-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.lightbox-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(8, 16, 11, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  animation: modalFadeIn 0.3s ease;
+}
+
+.lightbox-dialog {
+  position: relative;
+  width: 100%;
+  max-width: 1060px;
+  max-height: 92vh;
+  background: var(--ink);
+  border: 1px solid rgba(198, 146, 72, 0.35);
+  border-radius: 24px;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+  z-index: 2;
+  animation: modalPopIn 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: var(--ivory);
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.25s ease;
+}
+
+.lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.25);
+  transform: rotate(90deg) scale(1.05);
+}
+
+.lightbox-body {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  max-height: 90vh;
+  overflow: hidden;
+}
+
+.lightbox-img-col {
+  background: #060D08;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  overflow: hidden;
+}
+
+.lightbox-main-img {
+  max-width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.lightbox-info-col {
+  padding: 36px 32px;
+  background: var(--ink);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.lightbox-badge-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.lightbox-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: rgba(198, 146, 72, 0.15);
+  padding: 4px 12px;
+  border-radius: 100px;
+  border: 1px solid rgba(198, 146, 72, 0.3);
+}
+
+.lightbox-author {
+  font-size: 0.78rem;
+  color: rgba(251, 248, 242, 0.65);
+}
+
+.lightbox-title {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 500;
+  color: var(--white);
+  line-height: 1.25;
+  margin-bottom: 14px;
+}
+
+.lightbox-desc {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: rgba(251, 248, 242, 0.85);
+  margin-bottom: 28px;
+}
+
+.lightbox-card-cta {
+  margin-top: auto;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(198, 146, 72, 0.25);
+  border-radius: 16px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.lightbox-card-cta .lightbox-pill {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 4px;
+}
+
+.lightbox-card-cta h4 {
+  font-size: 1rem;
+  color: var(--white);
+  font-weight: 600;
+  margin: 0;
+}
+
+.lightbox-card-cta p {
+  font-size: 0.82rem;
+  color: rgba(251, 248, 242, 0.75);
+  line-height: 1.45;
+  margin: 0;
+}
+
+/* Animations */
+@keyframes modalFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes modalPopIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* ---------- RESPONSIVE ADDITIONS ---------- */
+@media (max-width: 1040px) {
+  .clinic-photo-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .clinic-trust-strip {
+    grid-template-columns: 1fr;
+  }
+  .spotlight-card {
+    grid-template-columns: 380px 1fr;
+  }
+  .spotlight-media img {
+    max-height: 500px;
+  }
+  .spotlight-content {
+    padding: 32px 28px;
+  }
+  .reels-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .infographics-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .reel-modal-container {
+    max-width: 760px;
+  }
+  .reel-modal-layout {
+    grid-template-columns: 320px 1fr;
+  }
+  .lightbox-dialog {
+    max-width: 880px;
+  }
+  .lightbox-body {
+    grid-template-columns: 1fr;
+  }
+  .lightbox-img-col {
+    max-height: 60vh;
+    padding: 24px;
+  }
+  .lightbox-main-img {
+    max-height: 54vh;
+  }
+}
+
+@media (max-width: 860px) {
+  .clinic-photo-grid {
+    grid-template-columns: 1fr;
+  }
+  .spotlight-card {
+    grid-template-columns: 1fr;
+  }
+  .spotlight-media {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    padding: 24px 16px;
+    max-width: 440px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .spotlight-media img {
+    width: 100%;
+    height: auto;
+    max-height: 520px;
+    object-fit: contain;
+  }
+  .spotlight-content {
+    padding: 28px 20px;
+  }
+  .spotlight-content h4 {
+    font-size: 1.6rem;
+  }
+  .reels-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+  }
+  .reels-hub {
+    padding: 70px 18px;
+  }
+  .infographics-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .infographics-section {
+    padding: 70px 18px;
+  }
+  .reel-modal {
+    padding: 10px;
+  }
+  .reel-modal-container {
+    max-height: 94vh;
+  }
+  .reel-modal-layout {
+    grid-template-columns: 1fr;
+    overflow-y: auto;
+  }
+  .reel-player-box {
+    min-height: 380px;
+    max-height: 50vh;
+  }
+  .reel-modal-sidebar {
+    padding: 22px 18px;
+  }
+  .reel-modal-title {
+    font-size: 1.3rem;
+  }
+  .lightbox-dialog {
+    max-height: 94vh;
+    overflow-y: auto;
+  }
+  .lightbox-info-col {
+    padding: 22px 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .reels-grid {
+    grid-template-columns: 1fr;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+  .reel-filter-btn {
+    font-size: 0.78rem;
+    padding: 7px 14px;
+  }
+}
