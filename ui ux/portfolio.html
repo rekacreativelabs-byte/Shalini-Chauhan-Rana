@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Aarav Mehta — Staff Product Designer &amp; Systems Architect</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #0A0D14;
+  --surface: #111622;
+  --surface-subtle: #161D2D;
+  --surface-border: #232D42;
+  --surface-hover: #1C2436;
+  --ink: #F8FAFC;
+  --ink-secondary: #94A3B8;
+  --muted: #64748B;
+  --accent: #3B82F6;
+  --accent-gradient: linear-gradient(135deg, #3B82F6 0%, #8B5CF6 100%);
+  --accent-glow: rgba(59, 130, 246, 0.25);
+  --success: #10B981;
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-full: 9999px;
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'Plus Jakarta Sans', sans-serif;
+}
+
+[data-theme="light"] {
+  --bg: #F8FAFC;
+  --surface: #FFFFFF;
+  --surface-subtle: #F1F5F9;
+  --surface-border: #E2E8F0;
+  --surface-hover: #F8FAFC;
+  --ink: #0F172A;
+  --ink-secondary: #475569;
+  --muted: #64748B;
+  --accent: #2563EB;
+  --accent-glow: rgba(37, 99, 235, 0.15);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 100px;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  position: relative;
+}
+
+/* Ambient Background Lighting */
+.ambient-glow-1 {
+  position: absolute;
+  top: -100px;
+  left: 20%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.18) 0%, rgba(0, 0, 0, 0) 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+.ambient-glow-2 {
+  position: absolute;
+  top: 600px;
+  right: 10%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.wrap {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 5vw, 40px);
+  position: relative;
+  z-index: 1;
+}
+
+/* Navbar */
+header.site-header {
+  position: sticky;
+  top: 20px;
+  z-index: 100;
+  margin-bottom: 40px;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 20px;
+  background: rgba(17, 22, 34, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-full);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+[data-theme="light"] .nav-container {
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.brand-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--accent-gradient);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 14px;
+  color: #fff;
+}
+
+.brand-text {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 17px;
+  letter-spacing: -0.02em;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 6px;
+  list-style: none;
+  align-items: center;
+}
+
+.nav-link {
+  padding: 8px 16px;
+  color: var(--ink-secondary);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: var(--radius-full);
+  transition: all 0.2s ease;
+}
+
+.nav-link:hover {
+  color: var(--ink);
+  background: var(--surface-subtle);
+}
+
+.theme-toggle {
+  background: var(--surface-subtle);
+  border: 1px solid var(--surface-border);
+  color: var(--ink);
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  transition: all 0.2s ease;
+  margin-left: 8px;
+}
+
+.theme-toggle:hover {
+  transform: rotate(25deg);
+  border-color: var(--accent);
+}
+
+/* Hero Section */
+.hero {
+  padding: 40px 0 70px;
+}
+
+.hero-pill-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 16px;
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-full);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink-secondary);
+}
+
+.live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--success);
+  position: relative;
+}
+
+.live-dot::after {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background: var(--success);
+  animation: pulse-ring 2s infinite;
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.9); opacity: 0.8; }
+  100% { transform: scale(2.5); opacity: 0; }
+}
+
+.hero h1 {
+  font-family: var(--font-display);
+  font-size: clamp(42px, 7vw, 84px);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  margin-bottom: 24px;
+}
+
+.hero h1 span.gradient {
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero-lead {
+  font-size: clamp(18px, 2.2vw, 22px);
+  color: var(--ink-secondary);
+  max-width: 58ch;
+  line-height: 1.6;
+  margin-bottom: 36px;
+}
+
+.hero-btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  align-items: center;
+}
+
+.btn-primary {
+  background: var(--accent-gradient);
+  color: #fff;
+  padding: 14px 28px;
+  border-radius: var(--radius-full);
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 4px 20px var(--accent-glow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px var(--accent-glow);
+}
+
+.btn-glass {
+  background: var(--surface);
+  color: var(--ink);
+  padding: 14px 24px;
+  border-radius: var(--radius-full);
+  font-size: 15px;
+  font-weight: 600;
+  border: 1px solid var(--surface-border);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.btn-glass:hover {
+  background: var(--surface-hover);
+  border-color: var(--muted);
+}
+
+.toast {
+  position: absolute;
+  top: -36px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--accent);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s, transform 0.2s;
+}
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-4px);
+}
+
+/* Metric Banner */
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-top: 50px;
+}
+
+.metric-card {
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-md);
+  padding: 22px;
+}
+
+.metric-num {
+  font-family: var(--font-display);
+  font-size: 34px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.metric-label {
+  color: var(--muted);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Section Common */
+section {
+  padding: 70px 0;
+  border-top: 1px solid var(--surface-border);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 36px;
+}
+
+.section-header h2 {
+  font-family: var(--font-display);
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.section-header p {
+  color: var(--muted);
+  font-size: 15px;
+  margin-top: 4px;
+}
+
+/* Filter Tabs */
+.filter-group {
+  display: flex;
+  gap: 8px;
+  background: var(--surface);
+  padding: 4px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--surface-border);
+}
+
+.filter-btn {
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter-btn.active, .filter-btn:hover {
+  background: var(--surface-subtle);
+  color: var(--ink);
+}
+.filter-btn.active {
+  background: var(--accent);
+  color: #fff;
+}
+
+/* Projects Grid */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(460px, 1fr));
+  gap: 24px;
+}
+
+.project-card {
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  cursor: pointer;
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), border-color 0.25s, box-shadow 0.25s;
+  display: flex;
+  flex-direction: column;
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent);
+  box-shadow: 0 16px 36px rgba(0,0,0,0.3);
+}
+
+.project-preview {
+  height: 200px;
+  border-radius: var(--radius-md);
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+}
+
+.p-1 { background: linear-gradient(135deg, #1E3A8A 0%, #3B82F6 100%); }
+.p-2 { background: linear-gradient(135deg, #0F172A 0%, #475569 100%); }
+.p-3 { background: linear-gradient(135deg, #B45309 0%, #F59E0B 100%); }
+.p-4 { background: linear-gradient(135deg, #065F46 0%, #10B981 100%); }
+
+.project-chip-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.chip {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  background: var(--surface-subtle);
+  color: var(--muted);
+  border: 1px solid var(--surface-border);
+}
+
+.project-title {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.project-desc {
+  color: var(--ink-secondary);
+  font-size: 14.5px;
+  margin-bottom: 20px;
+  flex-grow: 1;
+}
+
+.project-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--surface-border);
+  padding-top: 16px;
+}
+
+.impact-badge {
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.btn-open-case {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+/* Bento Systems Grid */
+.bento-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.bento-item {
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-lg);
+  padding: 30px;
+  transition: border-color 0.2s;
+}
+
+.bento-item:hover {
+  border-color: var(--muted);
+}
+
+.bento-span-2 {
+  grid-column: span 2;
+}
+
+.bento-icon {
+  font-size: 28px;
+  margin-bottom: 16px;
+  display: inline-block;
+}
+
+.bento-item h3 {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.bento-item p {
+  color: var(--ink-secondary);
+  font-size: 14.5px;
+  line-height: 1.6;
+}
+
+/* About Layout */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  gap: clamp(32px, 6vw, 64px);
+}
+
+.about-bio p {
+  font-size: 17px;
+  color: var(--ink-secondary);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.facts-card {
+  background: var(--surface);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-lg);
+  padding: 10px 24px;
+}
+
+.fact-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--surface-border);
+  font-size: 14.5px;
+}
+
+.fact-row:last-child {
+  border-bottom: none;
+}
+
+.fact-row span:first-child {
+  color: var(--muted);
+}
+
+.fact-row span:last-child {
+  font-weight: 600;
+}
+
+/* Contact Footer */
+.contact-card {
+  background: linear-gradient(135deg, var(--surface) 0%, var(--surface-subtle) 100%);
+  border: 1px solid var(--surface-border);
+  border-radius: var(--radius-lg);
+  padding: clamp(40px, 8vw, 80px);
+  text-align: center;
+}
+
+.contact-card h2 {
+  font-family: var(--font-display);
+  font-size: clamp(36px, 6vw, 64px);
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.contact-card p {
+  color: var(--ink-secondary);
+  font-size: 18px;
+  max-width: 48ch;
+  margin: 0 auto 32px;
+}
+
+footer {
+  padding: 40px 0 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+/* Interactive Case Study Drawer Modal */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  z-index: 200;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.modal-backdrop.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-drawer {
+  background: var(--surface);
+  width: 100%;
+  max-width: 650px;
+  height: 100%;
+  overflow-y: auto;
+  padding: clamp(24px, 5vw, 44px);
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow: -10px 0 40px rgba(0,0,0,0.5);
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.modal-backdrop.active .modal-drawer {
+  transform: translateX(0);
+}
+
+.modal-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-close {
+  background: var(--surface-subtle);
+  border: 1px solid var(--surface-border);
+  color: var(--ink);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+}
+
+.modal-banner {
+  height: 180px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.stat-box {
+  background: var(--surface-subtle);
+  border: 1px solid var(--surface-border);
+  padding: 16px;
+  border-radius: var(--radius-sm);
+  text-align: center;
+}
+
+.stat-box strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 22px;
+  color: var(--accent);
+}
+
+.stat-box span {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.case-body h4 {
+  font-family: var(--font-display);
+  font-size: 18px;
+  margin: 16px 0 8px;
+  color: var(--ink);
+}
+
+.case-body p {
+  color: var(--ink-secondary);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+@media (max-width: 800px) {
+  .projects-grid { grid-template-columns: 1fr; }
+  .bento-container { grid-template-columns: 1fr; }
+  .bento-span-2 { grid-column: span 1; }
+  .about-grid { grid-template-columns: 1fr; }
+  .nav-menu { display: none; }
+}
+</style>
+</head>
+<body>
+
+<div class="ambient-glow-1"></div>
+<div class="ambient-glow-2"></div>
+
+<div class="wrap">
+  <!-- NAVIGATION -->
+  <header class="site-header">
+    <div class="nav-container">
+      <a href="#top" class="brand">
+        <div class="brand-avatar">AM</div>
+        <span class="brand-text">Aarav Mehta</span>
+      </a>
+      <ul class="nav-menu">
+        <li><a href="#work" class="nav-link">Work</a></li>
+        <li><a href="#systems" class="nav-link">Architecture</a></li>
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <button class="theme-toggle" id="themeBtn" aria-label="Toggle Theme">◐</button>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <header class="hero" id="top">
+    <div class="hero-pill-row">
+      <div class="status-badge">
+        <span class="live-dot"></span>
+        <span>Available for Select Projects (Nov 2026)</span>
+      </div>
+      <div class="status-badge">
+        <span>📍 Delhi, India · IST</span>
+      </div>
+    </div>
+
+    <h1>Design that feels <span class="gradient">effortless.</span></h1>
+    <p class="hero-lead">Staff Product Designer crafting calm, accessible, and high-conversion interfaces for high-growth FinTech and HealthTech companies across 2M+ active users.</p>
+
+    <div class="hero-btns">
+      <a href="#contact" class="btn-primary">
+        <span>Discuss a Project</span>
+        <span>&rarr;</span>
+      </a>
+      <button class="btn-glass" id="copyBtn">
+        <span class="toast" id="toast">Copied to Clipboard!</span>
+        <span>hello@aaravmehta.design</span>
+        <span style="font-size:12px; color:var(--muted)">📋</span>
+      </button>
+    </div>
+
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-num">8+</div>
+        <div class="metric-label">Years Experience</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-num">2M+</div>
+        <div class="metric-label">Active Users Served</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-num">$140M+</div>
+        <div class="metric-label">Daily Volume Processed</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-num">100%</div>
+        <div class="metric-label">WCAG 2.2 AA Compliance</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- WORK SECTION -->
+  <section id="work">
+    <div class="section-header">
+      <div>
+        <h2>Featured Case Studies</h2>
+        <p>Click any project to inspect interactive metrics and full case breakdown.</p>
+      </div>
+      <div class="filter-group">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="fintech">Fintech</button>
+        <button class="filter-btn" data-filter="health">HealthTech</button>
+        <button class="filter-btn" data-filter="systems">Systems</button>
+      </div>
+    </div>
+
+    <div class="projects-grid" id="projectList">
+      <!-- Payd -->
+      <article class="project-card" data-cat="fintech" data-id="payd">
+        <div class="project-preview p-1">
+          <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
+        </div>
+        <div class="project-chip-row">
+          <span class="chip">Fintech</span>
+          <span class="chip">Mobile App</span>
+          <span class="chip">2026</span>
+        </div>
+        <h3 class="project-title">Payd — Real-Time Banking at Scale</h3>
+        <p class="project-desc">Complete core banking mobile overhaul for 2M accounts with zero-latency peer transfers and interactive predictive budgeting.</p>
+        <div class="project-footer">
+          <div class="impact-badge">▲ +48% Daily Volume</div>
+          <div class="btn-open-case">Read Case Study &rarr;</div>
+        </div>
+      </article>
+
+      <!-- Northwind -->
+      <article class="project-card" data-cat="health" data-id="northwind">
+        <div class="project-preview p-2">
+          <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+        </div>
+        <div class="project-chip-row">
+          <span class="chip">HealthTech</span>
+          <span class="chip">Patient Portal</span>
+          <span class="chip">2025</span>
+        </div>
+        <h3 class="project-title">Northwind Health — Clinical Care Platform</h3>
+        <p class="project-desc">Intuitive patient triage, lab analytics viewer, and doctor booking engine that reduced clinical drop-off by 34%.</p>
+        <div class="project-footer">
+          <div class="impact-badge">▲ 34% Dropoff Reduction</div>
+          <div class="btn-open-case">Read Case Study &rarr;</div>
+        </div>
+      </article>
+
+      <!-- Sunday Coffee -->
+      <article class="project-card" data-cat="systems" data-id="sunday">
+        <div class="project-preview p-3">
+          <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path></svg>
+        </div>
+        <div class="project-chip-row">
+          <span class="chip">E-Commerce</span>
+          <span class="chip">DTC Brand</span>
+          <span class="chip">2024</span>
+        </div>
+        <h3 class="project-title">Sunday Coffee — Direct-to-Consumer Funnel</h3>
+        <p class="project-desc">A tactile digital storefront and subscription manager blending organic aesthetic with sub-second checkout speeds.</p>
+        <div class="project-footer">
+          <div class="impact-badge">▲ +62% Subscriptions</div>
+          <div class="btn-open-case">Read Case Study &rarr;</div>
+        </div>
+      </article>
+
+      <!-- Grove -->
+      <article class="project-card" data-cat="systems" data-id="grove">
+        <div class="project-preview p-4">
+          <svg width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><polygon points="12 2 2 7 12 12 22 7 12 2"></polygon><polyline points="2 17 12 22 22 17"></polyline><polyline points="2 12 12 17 22 12"></polyline></svg>
+        </div>
+        <div class="project-chip-row">
+          <span class="chip">Design System</span>
+          <span class="chip">React &amp; Figma</span>
+          <span class="chip">2023</span>
+        </div>
+        <h3 class="project-title">Grove — Multi-Brand Design System</h3>
+        <p class="project-desc">Token-first component library supporting 80+ components across 4 distinct web and mobile products.</p>
+        <div class="project-footer">
+          <div class="impact-badge">▲ 4x Faster Shipped Features</div>
+          <div class="btn-open-case">Read Case Study &rarr;</div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- BENTO SYSTEMS SECTION -->
+  <section id="systems">
+    <div class="section-header">
+      <div>
+        <h2>Design Architecture</h2>
+        <p>Bridging qualitative empathy with technical engineering rigor.</p>
+      </div>
+    </div>
+    <div class="bento-container">
+      <div class="bento-item bento-span-2">
+        <span class="bento-icon">⚡</span>
+        <h3>Token-Driven Systems</h3>
+        <p>I architect design systems from primitive tokens to semantic components, ensuring seamless dark mode, accessibility, and zero-loss developer handoff.</p>
+      </div>
+      <div class="bento-item">
+        <span class="bento-icon">🔍</span>
+        <h3>Micro-Copy &amp; Empty States</h3>
+        <p>Crafting purposeful empty states, meaningful error recovery, and delightful micro-interactions that make software feel intuitive.</p>
+      </div>
+      <div class="bento-item">
+        <span class="bento-icon">💻</span>
+        <h3>Code-Fluent Prototyping</h3>
+        <p>Writing real code (React, CSS, Framer) to test physics and interaction fidelity directly in browser engines.</p>
+      </div>
+      <div class="bento-item bento-span-2">
+        <span class="bento-icon">🎯</span>
+        <h3>Continuous User Discovery</h3>
+        <p>Iterative qualitative interviews combined with quantitative funnel metrics to design features people love.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT SECTION -->
+  <section id="about">
+    <div class="section-header">
+      <div>
+        <h2>About &amp; Background</h2>
+      </div>
+    </div>
+    <div class="about-grid">
+      <div class="about-bio">
+        <p>I've spent eight years designing products people rely on every day. I care most about the small moments: the empty state, the error recovery, and the second it takes to load.</p>
+        <p>I work closely with engineers and product leaders, prioritizing fast shipping, continuous feedback, and measurable business impact over isolated perfection.</p>
+      </div>
+      <div class="facts-card">
+        <div class="fact-row"><span>Focus</span><span>Product &amp; Systems</span></div>
+        <div class="fact-row"><span>Tools</span><span>Figma, React, Tokens</span></div>
+        <div class="fact-row"><span>Based In</span><span>Delhi, India</span></div>
+        <div class="fact-row"><span>Experience</span><span>8+ Years</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section id="contact">
+    <div class="contact-card">
+      <h2>Let's build something extraordinary.</h2>
+      <p>Available for select product design advisories, full-stack product overhauls, and design system foundations.</p>
+      <a href="mailto:hello@aaravmehta.design" class="btn-primary" style="margin: 0 auto;">
+        <span>Email hello@aaravmehta.design</span>
+        <span>&rarr;</span>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <span>&copy; 2026 Aarav Mehta. All rights reserved.</span>
+    <span>Crafted with pure HTML &middot; CSS &middot; JS</span>
+  </footer>
+</div>
+
+<!-- SLIDE-IN CASE STUDY MODAL DRAWER -->
+<div class="modal-backdrop" id="caseModal">
+  <div class="modal-drawer">
+    <div class="modal-top">
+      <span class="chip" id="mTag">Fintech</span>
+      <button class="modal-close" id="closeModal">&times;</button>
+    </div>
+    <div class="modal-banner p-1" id="mBanner">Payd App</div>
+    <h3 style="font-family:var(--font-display); font-size:26px;" id="mTitle">Payd — Banking Overhaul</h3>
+    <div class="stats-row">
+      <div class="stat-box"><strong id="mStat1">+48%</strong><span>Volume</span></div>
+      <div class="stat-box"><strong id="mStat2">2.1M</strong><span>MAU</span></div>
+      <div class="stat-box"><strong id="mStat3">4.9★</strong><span>Rating</span></div>
+    </div>
+    <div class="case-body">
+      <h4>The Challenge</h4>
+      <p id="mChallenge">The legacy app suffered high transaction drop-offs due to complex multi-step security validations and cluttered balances.</p>
+      <h4>The Solution</h4>
+      <p id="mSolution">We introduced a unified ledger view with real-time biometric confirmations, reducing transfer friction to under 3 taps.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+// Theme Toggle
+const root = document.documentElement;
+const themeBtn = document.getElementById('themeBtn');
+themeBtn.addEventListener('click', () => {
+  const current = root.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+  root.setAttribute('data-theme', current);
+});
+
+// Copy Email with Toast
+const copyBtn = document.getElementById('copyBtn');
+const toast = document.getElementById('toast');
+copyBtn.addEventListener('click', () => {
+  navigator.clipboard.writeText('hello@aaravmehta.design').then(() => {
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2000);
+  });
+});
+
+// Project Filtering
+const filterBtns = document.querySelectorAll('.filter-btn');
+const cards = document.querySelectorAll('.project-card');
+
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filterBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const filter = btn.getAttribute('data-filter');
+    cards.forEach(card => {
+      if (filter === 'all' || card.getAttribute('data-cat') === filter) {
+        card.style.display = 'flex';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  });
+});
+
+// Interactive Case Study Drawer Modal
+const modal = document.getElementById('caseModal');
+const closeModal = document.getElementById('closeModal');
+const projectData = {
+  payd: { title: "Payd — Real-Time Banking", tag: "Fintech", banner: "p-1", s1: "+48%", s2: "2.1M", s3: "4.9★", ch: "Legacy app suffered from 32% transaction abandonment during checkout.", sol: "Created a single-gesture slider confirmation reducing payment steps from 5 to 2." },
+  northwind: { title: "Northwind Health Portal", tag: "HealthTech", banner: "p-2", s1: "-34%", s2: "450k", s3: "100%", ch: "Patients were getting lost across 14 fragmented hospital lab report screens.", sol: "Unified medical timeline with automated natural language report summaries." },
+  sunday: { title: "Sunday Coffee DTC", tag: "E-Commerce", banner: "p-3", s1: "+62%", s2: "80k", s3: "0.8s", ch: "Subscription churn was high due to an inflexible recurring management UI.", sol: "Built an interactive drag-and-drop roast calendar with one-click pause features." },
+  grove: { title: "Grove Design System", tag: "Systems", banner: "p-4", s1: "4x", s2: "80+", s3: "99%", ch: "Engineering squads were re-inventing basic buttons and tables on every sprint.", sol: "Constructed accessible token-driven React & Figma component library." }
+};
+
+cards.forEach(card => {
+  card.addEventListener('click', () => {
+    const id = card.getAttribute('data-id');
+    const data = projectData[id];
+    if (data) {
+      document.getElementById('mTitle').textContent = data.title;
+      document.getElementById('mTag').textContent = data.tag;
+      document.getElementById('mBanner').className = `modal-banner ${data.banner}`;
+      document.getElementById('mBanner').textContent = data.title.split("—")[0];
+      document.getElementById('mStat1').textContent = data.s1;
+      document.getElementById('mStat2').textContent = data.s2;
+      document.getElementById('mStat3').textContent = data.s3;
+      document.getElementById('mChallenge').textContent = data.ch;
+      document.getElementById('mSolution').textContent = data.sol;
+      modal.classList.add('active');
+    }
+  });
+});
+
+closeModal.addEventListener('click', () => modal.classList.remove('active'));
+modal.addEventListener('click', (e) => {
+  if (e.target === modal) modal.classList.remove('active');
+});
+</script>
+</body>
+</html>
