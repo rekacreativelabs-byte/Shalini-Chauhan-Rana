@@ -646,6 +646,51 @@
     }
   });
 
+  // ---------- 6. About Section Animated App Mockup Switcher ----------
+  var appNavBtns = document.querySelectorAll('#appScreenNav .app-nav-btn');
+  var aboutFloatingAppImg = document.getElementById('aboutFloatingAppImg');
+  var aboutFloatingBadge = document.getElementById('aboutFloatingBadge');
+  var activeAppIndex = 0;
+  var appTimer = null;
+
+  if (appNavBtns.length && aboutFloatingAppImg) {
+    function setAppScreen(index) {
+      if (index < 0 || index >= appNavBtns.length) return;
+      activeAppIndex = index;
+      appNavBtns.forEach(function (btn, i) {
+        btn.classList.toggle('active', i === activeAppIndex);
+      });
+      var activeBtn = appNavBtns[activeAppIndex];
+      var newSrc = activeBtn.getAttribute('data-img');
+      var newBadge = activeBtn.getAttribute('data-badge');
+
+      aboutFloatingAppImg.style.opacity = '0';
+      aboutFloatingAppImg.style.transform = 'translateY(8px) scale(0.98)';
+
+      setTimeout(function () {
+        aboutFloatingAppImg.src = newSrc;
+        if (aboutFloatingBadge && newBadge) {
+          aboutFloatingBadge.innerHTML = '<span class="badge-dot"></span> <span>' + newBadge + '</span>';
+        }
+        aboutFloatingAppImg.style.opacity = '1';
+        aboutFloatingAppImg.style.transform = '';
+      }, 180);
+    }
+
+    appNavBtns.forEach(function (btn, idx) {
+      btn.addEventListener('click', function () {
+        clearInterval(appTimer);
+        setAppScreen(idx);
+      });
+    });
+
+    // Auto rotate every 5 seconds if visible
+    appTimer = setInterval(function () {
+      var nextIdx = (activeAppIndex + 1) % appNavBtns.length;
+      setAppScreen(nextIdx);
+    }, 5000);
+  }
+
 })();
 
 

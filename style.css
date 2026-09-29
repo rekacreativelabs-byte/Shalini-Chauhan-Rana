@@ -499,49 +499,356 @@ a { color: inherit; }
   margin: 2px 0 0; font-size: 0.84rem; color: var(--ink-muted);
 }
 
-/* ---------- ABOUT / PHILOSOPHY ---------- */
+/* ---------- ABOUT / PHILOSOPHY (ULTRA-COMPACT LUXURY GLASSMORPHISM) ---------- */
 .about {
   background: var(--clay);
-  padding: 110px 28px;
+  padding: 44px 20px;
+  position: relative;
+  overflow: hidden;
 }
+.about::before {
+  content: "";
+  position: absolute;
+  top: -40px; left: 10%;
+  width: 300px; height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(198, 146, 72, 0.12) 0%, rgba(75, 115, 85, 0.06) 50%, transparent 70%);
+  filter: blur(40px);
+  pointer-events: none;
+}
+.about::after {
+  content: "";
+  position: absolute;
+  bottom: -30px; right: 8%;
+  width: 280px; height: 280px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(75, 115, 85, 0.1) 0%, rgba(198, 146, 72, 0.05) 50%, transparent 70%);
+  filter: blur(40px);
+  pointer-events: none;
+}
+
 .about-grid {
   max-width: var(--max); margin: 0 auto;
-  display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 64px;
+  display: grid; grid-template-columns: 0.72fr 1.28fr; gap: 24px;
+  align-items: center;
+  position: relative;
+  z-index: 2;
 }
+
+.about-eyebrow-col {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.about-eyebrow-col h2 {
+  font-size: clamp(1.8rem, 2.5vw, 2.35rem);
+  line-height: 1.08;
+  margin: 0;
+}
+
 .doc-credentials-pills {
-  display: flex; flex-wrap: wrap; gap: 8px; margin: 18px 0 20px;
+  display: flex; flex-wrap: wrap; gap: 5px; margin: 4px 0 6px;
 }
 .cred-pill {
-  font-size: 0.78rem; font-weight: 600;
+  font-size: 0.72rem; font-weight: 600;
   color: var(--sage-dark);
-  background: rgba(75, 115, 85, 0.12);
-  border: 1px solid rgba(75, 115, 85, 0.22);
-  padding: 4px 12px; border-radius: 999px;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(198, 146, 72, 0.25);
+  padding: 3px 10px; border-radius: 999px;
+  box-shadow: 0 1px 4px rgba(13, 28, 18, 0.02);
+  transition: all 0.2s ease;
+  display: inline-flex; align-items: center; gap: 4px;
 }
-.leaf-rule { color: var(--gold); margin-top: 18px; }
+.cred-pill:hover {
+  transform: translateY(-1px);
+  border-color: var(--gold);
+  background: #fff;
+}
+
+.leaf-rule { color: var(--gold); margin-top: 2px; }
+.animated-leaf-svg { width: 80px; height: 16px; }
 .animated-leaf-svg path {
   stroke-dasharray: 200; stroke-dashoffset: 200;
   transition: stroke-dashoffset 1.4s cubic-bezier(0.4, 0, 0.2, 1) 0.3s;
 }
 .about-eyebrow-col.is-revealed .animated-leaf-svg path { stroke-dashoffset: 0; }
 
+/* Frosted Glassmorphism Card */
+.about-glass-card {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  outline: 1px solid rgba(198, 146, 72, 0.2);
+  border-radius: 18px;
+  padding: 22px 26px;
+  box-shadow: 0 10px 28px -6px rgba(13, 28, 18, 0.05);
+  position: relative;
+  transition: transform 0.25s ease;
+}
+.about-glass-card:hover {
+  transform: translateY(-2px);
+}
+
+.glass-quote-wrap {
+  position: relative;
+  padding-left: 14px;
+  border-left: 2.5px solid var(--gold);
+  margin-bottom: 10px;
+}
 .pull-quote {
   font-family: var(--font-display);
-  font-size: 1.7rem; font-weight: 500; font-style: italic;
-  color: var(--sage-dark); line-height: 1.35;
-  margin-bottom: 28px; max-width: 36ch;
+  font-size: clamp(1.15rem, 1.6vw, 1.35rem);
+  font-weight: 500; font-style: italic;
+  color: var(--sage-dark); line-height: 1.28;
+  margin: 0;
 }
-.about-body p { color: var(--ink-soft); font-size: 1.05rem; }
+
+.about-body-text {
+  display: flex; flex-direction: column; gap: 8px;
+}
+.about-body-text p {
+  color: var(--ink-soft);
+  font-size: 0.92rem;
+  line-height: 1.55;
+  margin: 0;
+}
+.about-body-text p strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
 .doctor-signature {
-  margin-top: 32px; padding-top: 20px;
+  margin-top: 14px;
+  padding-top: 10px;
+  border-top: 1px solid rgba(198, 146, 72, 0.18);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.doc-sign-meta strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.12rem;
+  color: var(--ink);
+  line-height: 1.1;
+}
+.doc-sign-meta span {
+  font-size: 0.74rem;
+  font-weight: 600;
+  color: var(--gold-dark);
+}
+.doc-verified-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(75, 115, 85, 0.08);
+  border: 1px solid rgba(75, 115, 85, 0.2);
+  padding: 3px 9px;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--sage-dark);
+}
+
+/* ---------- SECTION 3: DIGITAL HEALTH COMPANION (WEB APP PORTAL) ---------- */
+.app-section {
+  background: linear-gradient(180deg, var(--clay) 0%, var(--bg) 100%);
+  padding: 68px 24px 72px;
+  position: relative;
+  overflow: hidden;
   border-top: 1px solid var(--line);
 }
-.doctor-signature strong {
-  display: block; font-family: var(--font-display); font-size: 1.25rem;
-  color: var(--ink);
+.app-section::before {
+  content: "";
+  position: absolute;
+  top: 10%; right: -50px;
+  width: 420px; height: 420px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(198, 146, 72, 0.15) 0%, rgba(75, 115, 85, 0.1) 50%, transparent 70%);
+  filter: blur(60px);
+  pointer-events: none;
 }
-.doctor-signature span {
-  font-size: 0.82rem; font-weight: 500; color: var(--gold-dark);
+
+.app-section-inner {
+  max-width: var(--max);
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.app-section-header {
+  max-width: 720px;
+  margin-bottom: 38px;
+}
+.app-section-header h2 {
+  font-size: clamp(2.2rem, 3.8vw, 3.2rem);
+  line-height: 1.1;
+  margin: 4px 0 12px;
+}
+.app-section-lede {
+  font-size: 1.05rem;
+  color: var(--ink-soft);
+  line-height: 1.65;
+  margin: 0;
+}
+
+.app-showcase-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 36px;
+  align-items: center;
+}
+
+.app-feature-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.app-feature-card {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  outline: 1px solid rgba(198, 146, 72, 0.2);
+  border-radius: 18px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  box-shadow: 0 8px 24px -4px rgba(13, 28, 18, 0.04);
+  transition: all 0.25s ease;
+}
+.app-feature-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--gold);
+  box-shadow: 0 14px 32px -6px rgba(198, 146, 72, 0.18);
+  background: #fff;
+}
+.app-feat-icon {
+  font-size: 1.6rem;
+  line-height: 1;
+  width: 44px; height: 44px;
+  border-radius: 12px;
+  background: rgba(198, 146, 72, 0.12);
+  display: grid; place-items: center;
+}
+.app-feat-content h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.3;
+  margin: 0 0 4px;
+}
+.app-feat-content p {
+  font-size: 0.84rem;
+  color: var(--ink-muted);
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* App Stage Column */
+.app-stage-col {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.75) 0%, rgba(241, 235, 223, 0.9) 100%);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(198, 146, 72, 0.3);
+  border-radius: 24px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  box-shadow: 0 18px 44px -8px rgba(13, 28, 18, 0.08);
+}
+
+.app-screen-nav {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.app-nav-btn {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(198, 146, 72, 0.28);
+  padding: 7px 14px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.app-nav-btn:hover, .app-nav-btn.active {
+  background: var(--sage-dark);
+  color: #fff;
+  border-color: var(--sage-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(75, 115, 85, 0.2);
+}
+
+.app-mockup-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  min-height: 300px;
+}
+.app-mockup-img {
+  max-width: 100%;
+  max-height: 310px;
+  border-radius: 18px;
+  box-shadow: 0 20px 48px -10px rgba(13, 28, 18, 0.25);
+  animation: floatApp 5s ease-in-out infinite;
+  object-fit: contain;
+}
+
+.floating-glass-badge {
+  position: absolute;
+  bottom: 8px; left: 50%;
+  transform: translateX(-50%);
+  background: rgba(13, 28, 18, 0.92);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #fff;
+  border: 1px solid rgba(198, 146, 72, 0.4);
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.74rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.app-pwa-badge {
+  font-size: 0.74rem;
+  color: var(--ink-muted);
+  text-align: center;
+  font-weight: 500;
+}
+
+.app-cta-row {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+@media (max-width: 900px) {
+  .app-showcase-grid { grid-template-columns: 1fr; }
+  .app-feature-cards { grid-template-columns: 1fr; }
 }
 
 /* ---------- PILLARS / SERVICES ---------- */
